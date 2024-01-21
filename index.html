@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Gerador de Plano de Aula</title>
+</head>
+<body>
+    <div class="corsk">
+        <header>
+            <img src="img/logo_unifenas.png" alt="Logo">
+            <h1>Gerador de Plano de Aula</h1>
+        </header>
+
+        <nav class="no-bootstrap">
+            <form action="https://chat.openai.com/" method="get" target="_blank" rel="noopener noreferrer">
+                <button class="close custom-btn" onclick="document.getElementById('submit-btn').click()">Acessar Chat GPT</button>
+            </form>
+            <form action="comoUsar.html" method="get" rel="noopener noreferrer">
+                <button class="close custom-btn" onclick="document.getElementById('submit-btn').click()">Como usar o Chat GPT</button>
+            </form>
+            <form action="creditos.html" method="get" rel="noopener noreferrer">
+                <button class="close custom-btn" onclick="document.getElementById('submit-btn').click()">Créditos</button>
+            </form>
+        </nav>
+    </div>
+
+    <div class="body1">
+        <div class="container">
+            <div class="text">
+                Gerador de Plano de Aula
+            </div>
+            <form id="planForm">
+
+                <div class="drop">
+                    <label for="opcoes">Escolha uma opção:</label>
+                    <select id="opcoes" onchange="mostrarOutro()">
+                        <option value="ensino fundamental">Ensino Fundamental</option>
+                        <option value="ensino médio">Ensino Médio</option>
+                        <option value="ensino superior" selected>Ensino Superior</option>
+                        <option value="outro">Outro</option>
+                    </select>
+
+                    <input type="text" id="outroInput" placeholder="Digite outro valor">
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="input-data">
+                        <input type="text" id="subject1" name="subject1" required>
+                        <div class="underline"></div>
+                        <label for="subject">Nome Do Curso</label>
+                    </div>
+                    <div class="input-data">
+                        <input type="text" id="subject" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="subject">Nome Da Disciplina</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data" title="Ex: 60 horas">
+                        <input type="text" id="horas" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="horas">Horas totais</label>
+                    </div>
+                    <div class="input-data" title="Ex: 13">
+                        <input type="text" id="semanas" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="semanas">Semanas</label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-data" title="Ex: provas teórica, trabalhos práticos">
+                        <input type="text" id="avaliacao" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="subject">Método de avaliação</label>
+                    </div>
+                    <div class="input-data" title="Ex: 5">
+                        <input type="text" id="ref1" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="subject">Número de referências</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data" title="Ex: 2">
+                        <input type="text" id="ref2" name="subject" required>
+                        <div class="underline"></div>
+                        <label for="subject">Número de referências complementares</label>
+                    </div>
+                </div>
+                <br>
+                <div class="obs">
+                    <h4>É recomendável gerar os tópicos específicos somente após criar o plano de aula completo!</h4>
+                </div>
+                <div class="ssk">
+                    <div class="checkboxes">
+                        <label for="introductionCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="introductionCheckbox" name="section" value="introduction" />
+                            <span> Introdução </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="activityInitialCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="activityInitialCheckbox" name="section" value="activityInitial" />
+                            <span> Atividade Inicial </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="assessmentActivityCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="assessmentActivityCheckbox" name="section" value="assessmentActivity" />
+                            <span> Atividade de Avaliação </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="practicalActivityCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="practicalActivityCheckbox" name="section" value="practicalActivity" />
+                            <span> Atividade Prática </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="objectivesCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="objectivesCheckbox" name="section" value="objectives" />
+                            <span> Objetivos </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="objectivesEspCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="objectivesEspCheckbox" name="section" value="objectivesEsp" />
+                            <span> Objetivos Específicos </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="ementaCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="ementaCheckbox" name="section" value="ementa" />
+                            <span> Ementa </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="metodolodiaCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="metodolodiaCheckbox" name="section" value="metodologia" />
+                            <span> Metodologia </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+                    </div>
+                    <div class="checkbox-container middle">
+                        <label for="projetoCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="projetoCheckbox" name="section" value="projeto" />
+                            <span> Projeto </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="groupDiscussionCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="groupDiscussionCheckbox" name="section" value="groupDiscussion" />
+                            <span> Discussão em Grupo </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="homeworkCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="homeworkCheckbox" name="section" value="homework" />
+                            <span> Tarefas de Casa </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="recAuxCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="recAuxCheckbox" name="section" value="recAux" />
+                            <span> Recursos Auxiliares </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="developmentCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="developmentCheckbox" name="section" value="development" />
+                            <span> Desenvolvimento </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="synthesisCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="synthesisCheckbox" name="section" value="synthesis" />
+                            <span> Síntese </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="referencia" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="referencia" name="section" value="referencia" />
+                            <span> Referências </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+
+                        <label for="feedbackCheckbox" class="flipBox" aria-label="Checkbox 1">
+                            <input type="checkbox" id="feedbackCheckbox" name="section" value="feedback" />
+                            <span> Feedback </span>
+                            <div class="flipBox_boxOuter">
+                                <div class="flipBox_box">
+                                <div></div><div></div><div></div><div></div><div></div><div></div>
+                                </div>
+                            </div>
+                            <div class="flipBox_shadow"></div>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <nav>
+                <form id="planForm" target="_blank" rel="noopener noreferrer">
+                    <button class="close custom-btn" type="button" onclick="generateSpecificTopic()">Gerar Tópico Específico</button>
+                </form>
+                <form id="planForm" target="_blank" rel="noopener noreferrer">
+                    <button class="close custom-btn" type="button" onclick="generatePlan()">Gerar Plano de Aula</button>
+                </form>
+            </nav>
+            <br>
+            <br>
+            <div id="output"></div>
+            <nav>
+                <button class="close custom-btn btnCopi hidden" type="button" onclick="CopyTexto('output')">Copiar</button>
+                <div id="alert" class="custom-alert"></div>
+            </nav>
+        </div>
+    </div>
+    <footer>
+        <p>ATEX - © 2023 Gerador de Plano de Aula</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
